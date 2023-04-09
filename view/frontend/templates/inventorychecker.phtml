@@ -1,0 +1,19 @@
+<h1>Inventory Checker</h1>
+<p>Enter a product ID, SKU or GTIN to check its stock quantity:</p>
+<form method="post">
+    <input type="text" name="product_id">
+    <button type="submit">Check</button>
+</form>
+<?php if ($this->getRequest()->isPost()): ?>
+    <?php $productId = $this->getRequest()->getPost('product_id'); ?>
+    <?php if ($productId): ?>
+        <?php $product = $this->getProductBySku($productId) ?: $this->getProductByGtin($productId); ?>
+        <?php if ($product): ?>
+            <p>Stock quantity of product <?php echo $product->getName(); ?> (<?php echo $product->getSku(); ?>): <?php echo $this->getStockQty($product->getId()); ?></p>
+            <?php $imageUrl = $this->getUrl('pub/media/catalog').'product'.$product->getImage(); ?>
+            <img src="<?php echo $imageUrl; ?>" alt="<?php echo $product->getName(); ?>">
+        <?php else: ?>
+            <p>No product found with ID, SKU or GTIN '<?php echo $productId; ?>'</p>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>
