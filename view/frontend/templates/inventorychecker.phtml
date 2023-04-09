@@ -9,9 +9,19 @@
     <?php if ($productId): ?>
         <?php $product = $this->getProductBySku($productId) ?: $this->getProductByGtin($productId); ?>
         <?php if ($product): ?>
-            <p>Stock quantity of product <?php echo $product->getName(); ?> (<?php echo $product->getSku(); ?>): <?php echo $this->getStockQty($product->getId()); ?></p>
-            <?php $imageUrl = $this->getUrl('pub/media/catalog').'product'.$product->getImage(); ?>
-            <img src="<?php echo $imageUrl; ?>" alt="<?php echo $product->getName(); ?>">
+            <p>
+                <?php if ($this->isShowSku()): ?>
+                    SKU: <?php echo $product->getSku(); ?><br>
+                <?php endif; ?>
+                <?php if ($this->isShowGtin()): ?>
+                    GTIN: <?php echo $product->getData('gtin'); ?><br>
+                <?php endif; ?>
+                Stock quantity: <?php echo $this->getStockQty($product->getId()); ?>
+            </p>
+            <?php if ($this->isShowImage()): ?>
+                <?php $imageUrl = $this->getUrl('pub/media/catalog').'product'.$product->getImage(); ?>
+                <img src="<?php echo $imageUrl; ?>" alt="<?php echo $product->getName(); ?>" width="<?php echo $this->getImageSize(); ?>" height="<?php echo $this->getImageSize(); ?>">
+            <?php endif; ?>
         <?php else: ?>
             <p>No product found with ID, SKU or GTIN '<?php echo $productId; ?>'</p>
         <?php endif; ?>
