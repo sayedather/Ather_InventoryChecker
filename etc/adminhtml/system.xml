@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="inventorychecker" translate="label" sortOrder="10">
+            <label>Inventory Checker</label>
+        </tab>
+        <section id="inventorychecker_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Settings</label>
+            <tab>inventorychecker</tab>
+            <resource>InventoryChecker::config_inventorychecker_settings</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="image_size" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Image Size</label>
+                    <comment>Enter the size of the product image to display in the inventory checker module (e.g. 200x200).</comment>
+                </field>
+                <field id="show_sku" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show SKU</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable to show SKU in the inventory checker module.</comment>
+                </field>
+                <field id="show_gtin" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show GTIN</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable to show GTIN in the inventory checker module.</comment>
+                </field>
+                <field id="show_image" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable to show product image in the inventory checker module.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
